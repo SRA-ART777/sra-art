@@ -23,7 +23,7 @@
     <style>
         :root {
             --bg-dark: #0a0a0a;
-            --accent-orange: #e67e22;
+            --accent-orange: #ff9f43; /* Brighter, more golden orange */
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
         }
@@ -208,7 +208,7 @@
             z-index: -1;
             transform: translate(-50%, -50%);
             opacity: 0.85;
-            filter: brightness(0.85) contrast(1.1);
+            filter: brightness(0.8) contrast(1.1);
             object-fit: cover;
         }
 
@@ -219,7 +219,7 @@
 
         h1 {
             font-size: clamp(2.2rem, 8vw, 4rem);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
             font-weight: 800;
             letter-spacing: 6px;
             text-transform: uppercase;
@@ -232,13 +232,21 @@
             font-weight: 800;
         }
 
+        .tagline-container {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 12px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            display: inline-block;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         p.tagline {
             color: var(--text-main);
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             font-weight: 700;
             letter-spacing: 5px;
             text-transform: uppercase;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
             opacity: 1;
         }
 
@@ -264,6 +272,10 @@
                 font-size: 2.2rem;
                 letter-spacing: 4px;
                 padding: 0 10px;
+            }
+            
+            .tagline-container {
+                padding: 10px 20px;
             }
         }
     </style>
@@ -312,7 +324,9 @@
     </video>
     <div class="hero-content">
         <h1>Expressionist <span>Oils</span></h1>
-        <p class="tagline"><span>Bold texture.</span> Lasting brilliance.</p>
+        <div class="tagline-container">
+            <p class="tagline"><span>Bold texture.</span> Lasting brilliance.</p>
+        </div>
     </div>
 </header>
 
