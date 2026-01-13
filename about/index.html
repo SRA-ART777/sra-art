@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Scott Anderson Fine Art</title>
+    <meta name="description" content="Scott Anderson is an expressionist painter known for bold palette knife technique and hand-cured oil paints. Direct from the Texas studio.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About | Scott Anderson Fine Art">
+    <meta property="og:description" content="Expressionist painter known for bold palette knife technique and hand-cured oil paints.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768262854/22013_5710077org_dtiw1e.jpg">
+    <meta property="og:url" content="https://sra-art.com/about">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18, 18, 18, 0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 700; font-size: 1.3rem; letter-spacing: 1px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; background: none; border: none; }
+        .dropdown-toggle:hover { color: var(--accent-orange); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(18, 18, 18, 0.98); min-width: 150px; padding: 10px 0; border-radius: 4px; margin-top: 10px; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230, 126, 34, 0.1); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18, 18, 18, 0.98); padding: 20px 5%; flex-direction: column; gap: 15px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; padding: 5px 0; }
+        .mobile-menu .mobile-submenu { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .mobile-menu .mobile-submenu a { font-size: 0.9rem; }
+
+        .about-content {
+            padding: 120px 5% 80px;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-image {
+            margin-bottom: 50px;
+        }
+
+        .about-image img {
+            width: 280px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .about-text {
+            max-width: 700px;
+        }
+
+        .about-text h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .about-text p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .about-location {
+            margin-top: 40px;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .about-content { padding: 100px 6% 50px; }
+            .about-image { margin-bottom: 40px; }
+            .about-image img { width: 200px; }
+            .about-text h1 { font-size: 1.8rem; margin-bottom: 30px; }
+            .about-text p { font-size: 0.95rem; line-height: 1.7; }
+            .about-location { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">Scott Anderson <span>Fine Art</span></div></a>
+    <div class="nav-links">
+        <a href="/available">Available</a>
+        <div class="dropdown">
+            <button class="dropdown-toggle">Palette Knife ▾</button>
+            <div class="dropdown-menu">
+                <a href="/palette-knife-trees">Trees</a>
+                <a href="/palette-knife-landscape">Landscape</a>
+                <a href="/palette-knife-floral">Floral</a>
+            </div>
+        </div>
+        <a href="/brush-work">Brush Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available">Available</a>
+    <span style="color: var(--text-dim); font-size: 0.9rem;">Palette Knife:</span>
+    <div class="mobile-submenu">
+        <a href="/palette-knife-trees">Trees</a>
+        <a href="/palette-knife-landscape">Landscape</a>
+        <a href="/palette-knife-floral">Floral</a>
+    </div>
+    <a href="/brush-work">Brush Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<section class="about-content">
+    <div class="about-image">
+        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768262854/22013_5710077org_dtiw1e.jpg" alt="Scott Anderson">
+    </div>
+    <div class="about-text">
+        <h1>About</h1>
+        <p>Scott Anderson is an expressionist painter known for a gripping, bravado style that carries a magnetic, almost Baroque strength. His work is characterized by "cyclonic" brushwork and palette knife techniques where images practically leap from the canvas to overtake the viewer with power and assertion. Whether a flamboyant tree engulfing the frame with kinetic energy or a gnarled pine battered by sea winds, Anderson's canvases are defined by movement and force.</p>
+        <p>Beyond the surface, Anderson is a dedicated "chemist" of his medium. He fashions his own paints from hand-cured oils and mineral pigments, a process that mirrors the techniques of the Old Masters. By avoiding inferior commercial oils, he ensures a depth of color and archival permanence that allows his vibrant, impasto works to retain their brilliance for generations.</p>
+        <p>Following a successful 15-year career represented by galleries in San Francisco and across the West, Scott now operates a direct-to-collector studio in North Texas.</p>
+        <p class="about-location">Dallas–Fort Worth Area</p>
+    </div>
+</section>
+
+<script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Scott Anderson Fine Art</title>
+    <meta name="description" content="Contact Scott Anderson for original oil paintings, commissions, and inquiries. Direct from the Texas studio.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact | Scott Anderson Fine Art">
+    <meta property="og:description" content="Contact for original oil paintings, commissions, and inquiries.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768246140/Grace_nnn6kr.jpg">
+    <meta property="og:url" content="https://sra-art.com/contact">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18, 18, 18, 0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 700; font-size: 1.3rem; letter-spacing: 1px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; background: none; border: none; }
+        .dropdown-toggle:hover { color: var(--accent-orange); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(18, 18, 18, 0.98); min-width: 150px; padding: 10px 0; border-radius: 4px; margin-top: 10px; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230, 126, 34, 0.1); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18, 18, 18, 0.98); padding: 20px 5%; flex-direction: column; gap: 15px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; padding: 5px 0; }
+        .mobile-menu .mobile-submenu { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .mobile-menu .mobile-submenu a { font-size: 0.9rem; }
+
+        .contact-content {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 10% 60px;
+        }
+
+        .contact-content h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+        }
+
+        .email-btn {
+            background: var(--accent-orange);
+            color: white;
+            padding: 22px 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: 0.3s;
+            display: inline-block;
+            margin-bottom: 50px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .email-btn:hover {
+            background: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        .contact-location {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .contact-content { padding: 100px 10% 40px; }
+            .contact-content h1 { font-size: 1.8rem; margin-bottom: 40px; }
+            .email-btn { padding: 16px 35px; font-size: 1rem; margin-bottom: 35px; }
+            .contact-location { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">Scott Anderson <span>Fine Art</span></div></a>
+    <div class="nav-links">
+        <a href="/available">Available</a>
+        <div class="dropdown">
+            <button class="dropdown-toggle">Palette Knife ▾</button>
+            <div class="dropdown-menu">
+                <a href="/palette-knife-trees">Trees</a>
+                <a href="/palette-knife-landscape">Landscape</a>
+                <a href="/palette-knife-floral">Floral</a>
+            </div>
+        </div>
+        <a href="/brush-work">Brush Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available">Available</a>
+    <span style="color: var(--text-dim); font-size: 0.9rem;">Palette Knife:</span>
+    <div class="mobile-submenu">
+        <a href="/palette-knife-trees">Trees</a>
+        <a href="/palette-knife-landscape">Landscape</a>
+        <a href="/palette-knife-floral">Floral</a>
+    </div>
+    <a href="/brush-work">Brush Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<section class="contact-content">
+    <h1>Contact</h1>
+    <a href="mailto:scott@sra-art.com" class="email-btn">scott@sra-art.com</a>
+    <p class="contact-location">Dallas–Fort Worth Area</p>
+</section>
+
+<script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+</script>
+
+</body>
+</html>

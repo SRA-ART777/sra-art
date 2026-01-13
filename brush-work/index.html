@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brush Work | Scott Anderson Fine Art</title>
+    <meta name="description" content="Brush work paintings by Scott Anderson. Softer expressionist oils with luminous color and atmospheric depth.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Brush Work | Scott Anderson Fine Art">
+    <meta property="og:description" content="Brush work paintings. Softer expressionist oils.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768251995/Your_Radiant_Shimmer_tbnnmj.jpg">
+    <meta property="og:url" content="https://sra-art.com/brush-work">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18, 18, 18, 0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 700; font-size: 1.3rem; letter-spacing: 1px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; background: none; border: none; }
+        .dropdown-toggle:hover { color: var(--accent-orange); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(18, 18, 18, 0.98); min-width: 150px; padding: 10px 0; border-radius: 4px; margin-top: 10px; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230, 126, 34, 0.1); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18, 18, 18, 0.98); padding: 20px 5%; flex-direction: column; gap: 15px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; padding: 5px 0; }
+        .mobile-menu .mobile-submenu { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .mobile-menu .mobile-submenu a { font-size: 0.9rem; }
+        .page-content { padding: 120px 5% 80px; max-width: 1400px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 50px; }
+        .page-header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 10px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; height: 280px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .gallery-item img:hover { transform: scale(1.02); }
+        .gallery-item h3 { margin-top: 15px; font-size: 1.1rem; font-weight: 400; color: var(--text-dim); }
+        .sold-badge { color: var(--accent-orange); font-size: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 1px; margin-top: 5px; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 200; justify-content: center; align-items: center; flex-direction: column; }
+        .lightbox.active { display: flex; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; }
+        .lightbox-img { max-width: 90%; max-height: 85%; object-fit: contain; }
+        .lightbox-caption { color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .page-content { padding: 100px 5% 60px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .gallery-item img { height: 180px; }
+            .gallery-item h3 { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">Scott Anderson <span>Fine Art</span></div></a>
+    <div class="nav-links">
+        <a href="/available">Available</a>
+        <div class="dropdown">
+            <button class="dropdown-toggle">Palette Knife ▾</button>
+            <div class="dropdown-menu">
+                <a href="/palette-knife-trees">Trees</a>
+                <a href="/palette-knife-landscape">Landscape</a>
+                <a href="/palette-knife-floral">Floral</a>
+            </div>
+        </div>
+        <a href="/brush-work">Brush Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available">Available</a>
+    <span style="color: var(--text-dim); font-size: 0.9rem;">Palette Knife:</span>
+    <div class="mobile-submenu">
+        <a href="/palette-knife-trees">Trees</a>
+        <a href="/palette-knife-landscape">Landscape</a>
+        <a href="/palette-knife-floral">Floral</a>
+    </div>
+    <a href="/brush-work">Brush Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<section class="page-content">
+    <div class="page-header">
+        <h1>Brush Work</h1>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768251995/Your_Radiant_Shimmer_tbnnmj.jpg" alt="Your Radiant Shimmer" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768251995/Your_Radiant_Shimmer_tbnnmj.jpg', 'Your Radiant Shimmer')">
+            <h3>Your Radiant Shimmer</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768252009/Whispering_Joy_vih70z.jpg" alt="Whispering Joy" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768252009/Whispering_Joy_vih70z.jpg', 'Whispering Joy')">
+            <h3>Whispering Joy</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768251987/Symphony_of_Silence_nr0hx1.jpg" alt="Symphony of Silence" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768251987/Symphony_of_Silence_nr0hx1.jpg', 'Symphony of Silence')">
+            <h3>Symphony of Silence</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768251983/Loves_Vibration__xzezxm.jpg" alt="Love's Vibration" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768251983/Loves_Vibration__xzezxm.jpg', 'Love\'s Vibration')">
+            <h3>Love's Vibration</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768251990/In_You_There_Is_Light_kremca.jpg" alt="In You There is Light" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768251990/In_You_There_Is_Light_kremca.jpg', 'In You There is Light')">
+            <h3>In You There is Light</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768251998/Walking_Through_Love_yi6akn.jpg" alt="Walking Through Love" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768251998/Walking_Through_Love_yi6akn.jpg', 'Walking Through Love')">
+            <h3>Walking Through Love</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768252002/Evening_s_Embrace_jrpptu.jpg" alt="Evening's Embrace" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768252002/Evening_s_Embrace_jrpptu.jpg', 'Evening\'s Embrace')">
+            <h3>Evening's Embrace</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768252006/Your_Azure_Beauty_mrlejt.jpg" alt="Your Azure Beauty" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768252006/Your_Azure_Beauty_mrlejt.jpg', 'Your Azure Beauty')">
+            <h3>Your Azure Beauty</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+    function openLightbox(imgSrc, title) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-caption').textContent = title;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; }
+    });
+</script>
+
+</body>
+</html>

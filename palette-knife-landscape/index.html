@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landscape | Palette Knife Collection | Scott Anderson Fine Art</title>
+    <meta name="description" content="Palette knife landscape paintings by Scott Anderson. Coastal scenes and seascapes with bold expressionist texture.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Landscape | Scott Anderson Fine Art">
+    <meta property="og:description" content="Palette knife landscape paintings. Coastal scenes with bold texture.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768247246/Coastal_Dreaming_1400_kz0rtu.jpg">
+    <meta property="og:url" content="https://sra-art.com/palette-knife-landscape">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        :root { --bg-dark: #121212; --accent-orange: #e67e22; --text-main: #ffffff; --text-dim: #a0a0a0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; overflow-x: hidden; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: rgba(18, 18, 18, 0.95); position: fixed; top: 0; width: 90%; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-weight: 700; font-size: 1.3rem; letter-spacing: 1px; }
+        .logo span { color: var(--accent-orange); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; }
+        .nav-links a:hover { color: var(--accent-orange); }
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; color: var(--text-dim); font-size: 0.9rem; transition: 0.3s; font-family: 'Inter', sans-serif; background: none; border: none; }
+        .dropdown-toggle:hover { color: var(--accent-orange); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(18, 18, 18, 0.98); min-width: 150px; padding: 10px 0; border-radius: 4px; margin-top: 10px; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .dropdown-menu a:hover { color: var(--accent-orange); background: rgba(230, 126, 34, 0.1); }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(18, 18, 18, 0.98); padding: 20px 5%; flex-direction: column; gap: 15px; z-index: 99; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-dim); text-decoration: none; font-size: 1rem; padding: 5px 0; }
+        .mobile-menu .mobile-submenu { padding-left: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .mobile-menu .mobile-submenu a { font-size: 0.9rem; }
+        .page-content { padding: 120px 5% 80px; max-width: 1400px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 50px; }
+        .page-header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 10px; }
+        .page-header .subtitle { color: var(--accent-orange); font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; height: 280px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+        .gallery-item img:hover { transform: scale(1.02); }
+        .gallery-item h3 { margin-top: 15px; font-size: 1.1rem; font-weight: 400; color: var(--text-dim); }
+        .sold-badge { color: var(--accent-orange); font-size: 0.8rem; font-family: 'Inter', sans-serif; letter-spacing: 1px; margin-top: 5px; }
+        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 200; justify-content: center; align-items: center; flex-direction: column; }
+        .lightbox.active { display: flex; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; }
+        .lightbox-img { max-width: 90%; max-height: 85%; object-fit: contain; }
+        .lightbox-caption { color: var(--text-dim); margin-top: 15px; font-size: 1.1rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            nav { padding: 15px 5%; }
+            .page-content { padding: 100px 5% 60px; }
+            .page-header h1 { font-size: 1.8rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .gallery-item img { height: 180px; }
+            .gallery-item h3 { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" style="text-decoration: none; color: inherit;"><div class="logo">Scott Anderson <span>Fine Art</span></div></a>
+    <div class="nav-links">
+        <a href="/available">Available</a>
+        <div class="dropdown">
+            <button class="dropdown-toggle">Palette Knife ▾</button>
+            <div class="dropdown-menu">
+                <a href="/palette-knife-trees">Trees</a>
+                <a href="/palette-knife-landscape">Landscape</a>
+                <a href="/palette-knife-floral">Floral</a>
+            </div>
+        </div>
+        <a href="/brush-work">Brush Work</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available">Available</a>
+    <span style="color: var(--text-dim); font-size: 0.9rem;">Palette Knife:</span>
+    <div class="mobile-submenu">
+        <a href="/palette-knife-trees">Trees</a>
+        <a href="/palette-knife-landscape">Landscape</a>
+        <a href="/palette-knife-floral">Floral</a>
+    </div>
+    <a href="/brush-work">Brush Work</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<section class="page-content">
+    <div class="page-header">
+        <p class="subtitle">Palette Knife Collection</p>
+        <h1>Landscape</h1>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247246/Coastal_Dreaming_1400_kz0rtu.jpg" alt="Coastal Dreaming" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247246/Coastal_Dreaming_1400_kz0rtu.jpg', 'Coastal Dreaming')">
+            <h3>Coastal Dreaming</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247243/Summer_s_Light_1400_g2dvag.jpg" alt="Summer's Light" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247243/Summer_s_Light_1400_g2dvag.jpg', 'Summer\'s Light')">
+            <h3>Summer's Light</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247233/Coastal_Bloom_1600_l3b3n3.jpg" alt="Coastal Bloom" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247233/Coastal_Bloom_1600_l3b3n3.jpg', 'Coastal Bloom')">
+            <h3>Coastal Bloom</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247239/The_Rhythm_of_Your_Beauty_ns4qcg.jpg" alt="The Rhythm of Your Beauty" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247239/The_Rhythm_of_Your_Beauty_ns4qcg.jpg', 'The Rhythm of Your Beauty')">
+            <h3>The Rhythm of Your Beauty</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247236/As_I_Listened_1400_tzhkw2.jpg" alt="As I Listened" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247236/As_I_Listened_1400_tzhkw2.jpg', 'As I Listened')">
+            <h3>As I Listened</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247253/Dunes_Beach_Flowers_1400_cvg65s.jpg" alt="Dunes Beach Flowers" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247253/Dunes_Beach_Flowers_1400_cvg65s.jpg', 'Dunes Beach Flowers')">
+            <h3>Dunes Beach Flowers</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247250/Ocean_Song_1400_npyzpr.jpg" alt="Ocean Song" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247250/Ocean_Song_1400_npyzpr.jpg', 'Ocean Song')">
+            <h3>Ocean Song</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247264/Seeking_Your_Light_r1fadh.jpg" alt="Seeking Your Light" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247264/Seeking_Your_Light_r1fadh.jpg', 'Seeking Your Light')">
+            <h3>Seeking Your Light</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247260/In_Your_Presence_There_is_Freedom_ridczg.jpg" alt="In Your Presence There is Freedom" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247260/In_Your_Presence_There_is_Freedom_ridczg.jpg', 'In Your Presence There is Freedom')">
+            <h3>In Your Presence There is Freedom</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247267/Evenings_Colors_jrcnuc.jpg" alt="Evening's Colors" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247267/Evenings_Colors_jrcnuc.jpg', 'Evening\'s Colors')">
+            <h3>Evening's Colors</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/w_600/v1768247257/Contemplating_Grace_ruljcc.jpg" alt="Contemplating Grace" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1768247257/Contemplating_Grace_ruljcc.jpg', 'Contemplating Grace')">
+            <h3>Contemplating Grace</h3>
+            <p class="sold-badge">SOLD</p>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+</div>
+
+<script>
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+    function openLightbox(imgSrc, title) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-caption').textContent = title;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(event) {
+        if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; }
+    });
+</script>
+
+</body>
+</html>
