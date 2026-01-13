@@ -23,7 +23,6 @@
     <style>
         :root {
             --bg-dark: #0a0a0a;
-            --accent-cream: #fdf5e6; /* Warm off-white/cream */
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
         }
@@ -47,13 +46,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 25px 50px;
-            background: rgba(10, 10, 10, 0.85);
+            background: rgba(10, 10, 10, 0.6); /* More transparent to let art show through */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
@@ -62,11 +61,13 @@
             font-size: 1.1rem;
             letter-spacing: 2px;
             text-transform: uppercase;
+            color: var(--text-main);
         }
 
         .logo span {
-            color: var(--accent-cream);
-            font-weight: 500;
+            color: var(--text-main);
+            font-weight: 400;
+            opacity: 0.7;
         }
 
         .nav-links {
@@ -76,7 +77,7 @@
         }
 
         .nav-links a, .dropdown-toggle {
-            color: var(--text-dim);
+            color: var(--text-main);
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 700;
@@ -86,10 +87,11 @@
             background: none;
             border: none;
             cursor: pointer;
+            opacity: 0.8;
         }
 
         .nav-links a:hover, .dropdown-toggle:hover {
-            color: var(--text-main);
+            opacity: 1;
         }
 
         .dropdown {
@@ -118,7 +120,8 @@
         .dropdown-menu a {
             display: block;
             padding: 12px 25px;
-            color: var(--text-dim);
+            color: var(--text-main);
+            opacity: 0.7;
             text-decoration: none;
             font-size: 0.75rem;
             transition: 0.2s;
@@ -126,7 +129,7 @@
         }
 
         .dropdown-menu a:hover {
-            color: var(--text-main);
+            opacity: 1;
             background: rgba(255,255,255,0.05);
         }
 
@@ -171,30 +174,10 @@
             letter-spacing: 3px;
         }
 
-        .mobile-menu .mobile-submenu {
-            padding-left: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-left: 2px solid var(--accent-cream);
-        }
-
-        .mobile-menu .mobile-submenu a {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            font-weight: 400;
-        }
-
         header {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
             position: relative;
             overflow: hidden;
-            padding: 0 10%;
         }
 
         .hero-video {
@@ -207,75 +190,20 @@
             height: auto;
             z-index: -1;
             transform: translate(-50%, -50%);
-            opacity: 0.85;
-            filter: brightness(0.8) contrast(1.1);
+            opacity: 1; /* Full opacity */
+            filter: brightness(1) contrast(1); /* Full color/brightness */
             object-fit: cover;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: clamp(2.2rem, 8vw, 4rem);
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            line-height: 1.1;
-        }
-
-        h1 span {
-            color: var(--accent-cream);
-            font-weight: 800;
-        }
-
-        .tagline-container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 8px 20px;
-            border-radius: 4px;
-            backdrop-filter: blur(4px);
-            display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        p.tagline {
-            color: var(--text-main);
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 1;
-        }
-
-        p.tagline span {
-            color: var(--accent-cream);
-            font-weight: 800;
         }
 
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-
             .hamburger {
                 display: flex;
             }
-
             nav {
                 padding: 25px 30px;
-            }
-
-            h1 {
-                font-size: 2.2rem;
-                letter-spacing: 4px;
-                padding: 0 10px;
-            }
-            
-            .tagline-container {
-                padding: 6px 15px;
             }
         }
     </style>
@@ -307,12 +235,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <a href="/available" onclick="toggleMenu()">Available</a>
-    <a href="#" style="color: var(--accent-cream); pointer-events: none;">Palette Knife</a>
-    <div class="mobile-submenu">
-        <a href="/palette-knife-trees" onclick="toggleMenu()">Trees</a>
-        <a href="/palette-knife-landscape" onclick="toggleMenu()">Landscape</a>
-        <a href="/palette-knife-floral" onclick="toggleMenu()">Floral</a>
-    </div>
+    <a href="/palette-knife-trees" onclick="toggleMenu()">Trees</a>
+    <a href="/palette-knife-landscape" onclick="toggleMenu()">Landscape</a>
+    <a href="/palette-knife-floral" onclick="toggleMenu()">Floral</a>
     <a href="/brush-work" onclick="toggleMenu()">Brush Work</a>
     <a href="/about" onclick="toggleMenu()">About</a>
     <a href="/contact" onclick="toggleMenu()">Contact</a>
@@ -322,19 +247,12 @@
     <video class="hero-video" autoplay muted loop playsinline>
         <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768243609/Art_Reel_Website_Home_H.264_jhl3pe.mp4" type="video/mp4">
     </video>
-    <div class="hero-content">
-        <h1>Expressionist <span>Oils</span></h1>
-        <div class="tagline-container">
-            <p class="tagline"><span>Bold texture.</span> Lasting brilliance.</p>
-        </div>
-    </div>
 </header>
 
 <script>
     function toggleMenu( ) {
         const menu = document.getElementById('mobileMenu');
         menu.classList.toggle('active');
-        
         if (menu.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
         } else {
