@@ -35,6 +35,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ========== NAV - Audio icon on RIGHT ========== */
         nav {
             display: flex;
             justify-content: space-between;
@@ -50,12 +51,10 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .nav-left { display: flex; align-items: center; gap: 25px; }
-
         .logo {
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 0.95rem;
+            font-weight: 800;
+            font-size: 1.2rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-main);
@@ -63,6 +62,12 @@
         }
 
         .logo .accent { color: var(--accent-orange); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
 
         .audio-toggle {
             background: none;
@@ -76,15 +81,19 @@
         }
 
         .audio-toggle:hover { opacity: 0.8; }
-        .audio-toggle svg { width: 28px; height: 28px; }
+        .audio-toggle svg { width: 24px; height: 24px; }
 
-        .nav-links { display: flex; gap: 35px; align-items: center; }
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
 
         .nav-links a, .dropdown-toggle {
             color: var(--text-main);
             text-decoration: none;
             font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -96,6 +105,7 @@
         }
 
         .nav-links a:hover, .dropdown-toggle:hover { opacity: 1; }
+
         .dropdown { position: relative; padding: 10px 0; }
 
         .dropdown-menu {
@@ -121,7 +131,7 @@
             opacity: 0.7;
             text-decoration: none;
             font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 1.2px;
             text-transform: uppercase;
@@ -195,6 +205,7 @@
             letter-spacing: 2px;
         }
 
+        /* ========== PAGE CONTENT ========== */
         .page-content { padding: 120px 5% 80px; max-width: 1400px; margin: 0 auto; }
         .page-header { text-align: center; margin-bottom: 50px; }
         .page-header h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 10px; }
@@ -213,9 +224,10 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .audio-toggle { display: none; }
             .hamburger { display: flex; }
             nav { padding: 20px 25px; }
-            .audio-toggle svg { width: 24px; height: 24px; }
+            .logo { font-size: 1rem; }
             .page-content { padding: 100px 5% 60px; }
             .page-header h1 { font-size: 1.8rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
@@ -227,8 +239,8 @@
 <body>
 
 <nav>
-    <div class="nav-left">
-        <a href="/" class="logo">SRA<span class="accent">ART</span></a>
+    <a href="/" class="logo">SRA<span class="accent">ART</span></a>
+    <div class="nav-right">
         <button class="audio-toggle" id="audioToggle" title="Toggle audio experience">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/>
@@ -236,25 +248,25 @@
                 <path d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
-    </div>
-    <div class="nav-links">
-        <div class="dropdown">
-            <button class="dropdown-toggle">Art ▾</button>
-            <div class="dropdown-menu">
-                <a href="/available">Available</a>
-                <div class="sub-dropdown">
-                    <button class="sub-dropdown-toggle">Palette Knife ▸</button>
-                    <div class="sub-dropdown-menu">
-                        <a href="/palette-knife-trees">Trees</a>
-                        <a href="/palette-knife-landscape">Landscape</a>
-                        <a href="/palette-knife-floral">Floral</a>
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-toggle">Art ▾</button>
+                <div class="dropdown-menu">
+                    <a href="/available">Available</a>
+                    <div class="sub-dropdown">
+                        <button class="sub-dropdown-toggle">Palette Knife ▸</button>
+                        <div class="sub-dropdown-menu">
+                            <a href="/palette-knife-trees">Trees</a>
+                            <a href="/palette-knife-landscape">Landscape</a>
+                            <a href="/palette-knife-floral">Floral</a>
+                        </div>
                     </div>
+                    <a href="/brush-work">Brush Work</a>
                 </div>
-                <a href="/brush-work">Brush Work</a>
             </div>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
         </div>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
     </div>
     <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
