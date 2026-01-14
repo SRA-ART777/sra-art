@@ -27,7 +27,7 @@
         .dropdown-menu a:hover { opacity: 1; background: rgba(255,255,255,0.05); }
         .sub-dropdown { position: relative; }
         .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; }
-        .sub-dropdown:hover .sub-dropdown-menu { display: block; }
+        .dropdown:hover .sub-dropdown-menu { display: block; }
         .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
         .hamburger span { width: 24px; height: 2px; background: var(--text-main); }
@@ -91,9 +91,7 @@
 </div>
 <section class="contact-content">
     <h1>Contact</h1>
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-        <input type="hidden" name="redirect" value="https://sra-art.com/contact?success=true">
+    <form class="contact-form" action="https://formspree.io/f/xreegnvo" method="POST">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
