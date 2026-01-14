@@ -35,7 +35,7 @@
         .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; transition: 0.2s; text-align: left; background: none; border: none; cursor: pointer; width: 100%; }
         .dropdown-menu a:hover, .dropdown-menu .sub-dropdown-toggle:hover { opacity: 1; background: rgba(255,255,255,0.05); }
         
-        /* Fixed sub-dropdown - stays open properly */
+        /* Fixed sub-dropdown - always visible when parent dropdown is open */
         .sub-dropdown { position: relative; }
         .sub-dropdown-toggle { cursor: default; }
         .sub-dropdown-menu { 
@@ -44,7 +44,8 @@
             padding: 0 0 0 15px;
             margin: 0;
         }
-        .sub-dropdown:hover .sub-dropdown-menu { display: block; }
+        /* Show sub-items when entire dropdown is hovered, not just sub-dropdown */
+        .dropdown:hover .sub-dropdown-menu { display: block; }
         .sub-dropdown-menu a {
             padding: 10px 20px;
             font-size: 0.7rem;
@@ -170,19 +171,19 @@
     </div>
     <div class="available-grid">
         <div class="painting-card">
-            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245158/Westward_Gaze_wfxpat.jpg" alt="Westward Gaze" onclick="openLightbox(this.src)">
-            <div class="painting-info">
-                <h3 class="painting-title">Westward Gaze</h3>
-                <p class="painting-details">Oil on Canvas · 36" × 48" · Side Painted</p>
-                <p class="painting-price">$3,200</p>
-            </div>
-        </div>
-        <div class="painting-card">
             <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245156/Vivid_egjl58.jpg" alt="Vivid" onclick="openLightbox(this.src)">
             <div class="painting-info">
                 <h3 class="painting-title">Vivid</h3>
                 <p class="painting-details">Oil on Canvas · 24" × 36" · Framed</p>
                 <p class="painting-price">$1,700</p>
+            </div>
+        </div>
+        <div class="painting-card">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245158/Westward_Gaze_wfxpat.jpg" alt="Westward Gaze" onclick="openLightbox(this.src)">
+            <div class="painting-info">
+                <h3 class="painting-title">Westward Gaze</h3>
+                <p class="painting-details">Oil on Canvas · 36" × 48" · Side Painted</p>
+                <p class="painting-price">$3,200</p>
             </div>
         </div>
         <div class="painting-card">
