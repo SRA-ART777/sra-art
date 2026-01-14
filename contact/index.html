@@ -4,161 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | SRA Art</title>
-    <meta name="description" content="Contact Scott Anderson for original oil paintings, commissions, and inquiries. Direct from the Texas studio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Contact | SRA Art">
-    <meta property="og:description" content="Contact for original oil paintings, commissions, and inquiries.">
-    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768246140/Grace_nnn6kr.jpg">
-    <meta property="og:url" content="https://sra-art.com/contact">
-    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         :root { --bg-dark: #0a0a0a; --accent-orange: #d4712a; --text-main: #ffffff; --text-dim: #a0a0a0; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Georgia', serif; -webkit-font-smoothing: antialiased; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(26, 26, 26, 0.95); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .logo { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-main); text-decoration: none; }
         .logo .accent { color: var(--accent-orange); }
         .nav-right { display: flex; align-items: center; gap: 35px; }
-        .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
-        .audio-toggle:hover { opacity: 0.8; }
+        .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; }
         .audio-toggle svg { width: 24px; height: 24px; }
         .nav-links { display: flex; gap: 35px; align-items: center; }
-        .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s ease; background: none; border: none; cursor: pointer; opacity: 0.85; }
-        .nav-links a:hover, .dropdown-toggle:hover { opacity: 1; }
+        .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; background: none; border: none; cursor: pointer; opacity: 0.85; }
         .dropdown { position: relative; padding: 10px 0; }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(20, 20, 20, 0.98); min-width: 180px; padding: 10px 0; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(20, 20, 20, 0.98); min-width: 180px; padding: 10px 0; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); }
         .dropdown:hover .dropdown-menu { display: block; }
-        .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; text-decoration: none; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; transition: 0.2s; text-align: left; background: none; border: none; cursor: pointer; width: 100%; }
-        .dropdown-menu a:hover, .dropdown-menu .sub-dropdown-toggle:hover { opacity: 1; background: rgba(255,255,255,0.05); }
+        .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; text-decoration: none; width: 100%; text-align: left; background: none; border: none; cursor: pointer; }
+        .dropdown-menu a:hover { opacity: 1; background: rgba(255,255,255,0.05); }
         .sub-dropdown { position: relative; }
-        .sub-dropdown-menu { display: none; background: rgba(20, 20, 20, 0.98); padding: 5px 0 5px 15px; }
+        .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; }
         .sub-dropdown:hover .sub-dropdown-menu { display: block; }
         .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
-        .hamburger span { width: 24px; height: 2px; background: var(--text-main); transition: 0.3s; }
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 120px 50px; flex-direction: column; gap: 30px; z-index: 999; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-main); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 100px 40px; flex-direction: column; z-index: 999; }
         .mobile-menu.active { display: flex; }
-        .mobile-menu a { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-        .mobile-menu .section-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--accent-orange); opacity: 0.7; margin-top: 20px; margin-bottom: -15px; letter-spacing: 2px; }
-        
-        .contact-content { 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            padding: 120px 10% 60px; 
-        }
-        
-        .contact-content h1 { 
-            font-size: 2.2rem; 
-            font-weight: 400; 
-            letter-spacing: 2px; 
-            margin-bottom: 40px; 
-        }
-        
-        .contact-form {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-            margin-bottom: 8px;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-orange);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background: var(--accent-orange);
-            color: white;
-            padding: 18px 50px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            background: #b85f1f;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 113, 42, 0.3);
-        }
-        
-        .contact-location { 
-            color: var(--text-dim); 
-            font-size: 1.1rem; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-        }
-        
-        @media (max-width: 768px) { 
-            .nav-links { display: none; } 
-            .audio-toggle { display: none; } 
-            .hamburger { display: flex; } 
-            nav { padding: 20px 25px; } 
-            .logo { font-size: 1rem; } 
-            .contact-content { padding: 100px 8% 40px; } 
-            .contact-content h1 { font-size: 1.8rem; margin-bottom: 30px; } 
-            .contact-form { max-width: 100%; }
-            .submit-btn { padding: 16px 35px; }
-            .contact-location { font-size: 0.95rem; } 
-        }
+        .mobile-menu a { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .section-header { color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
+        .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
+        .contact-content { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 10% 60px; }
+        .contact-content h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 40px; }
+        .contact-form { width: 100%; max-width: 500px; margin-bottom: 40px; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1rem; transition: 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-orange); background: rgba(255, 255, 255, 0.08); }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .submit-btn { background: var(--accent-orange); color: white; padding: 18px 50px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s; width: 100%; }
+        .submit-btn:hover { background: #b85f1f; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 113, 42, 0.3); }
+        .contact-location { color: var(--text-dim); font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; }
+        @media (max-width: 768px) { .nav-links, .audio-toggle { display: none; } .hamburger { display: flex; } nav { padding: 20px 25px; } .logo { font-size: 1rem; } .contact-content { padding: 100px 8% 40px; } .contact-content h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
 <nav>
     <a href="/" class="logo">SRA<span class="accent">ART</span></a>
     <div class="nav-right">
-        <button class="audio-toggle" id="audioToggle" title="Toggle audio experience">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        <button class="audio-toggle"><svg viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round"/><path d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round"/></svg></button>
         <div class="nav-links">
             <div class="dropdown">
                 <button class="dropdown-toggle">Art ▾</button>
@@ -183,19 +80,20 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="/available" onclick="toggleMenu()">Available</a>
-    <div class="section-label">Palette Knife</div>
-    <a href="/palette-knife-trees" onclick="toggleMenu()">Trees</a>
-    <a href="/palette-knife-landscape" onclick="toggleMenu()">Landscape</a>
-    <a href="/palette-knife-floral" onclick="toggleMenu()">Floral</a>
-    <div class="section-label">—</div>
+    <span class="section-header">Palette Knife</span>
+    <a href="/palette-knife-trees" class="sub-item" onclick="toggleMenu()">Trees</a>
+    <a href="/palette-knife-landscape" class="sub-item" onclick="toggleMenu()">Landscape</a>
+    <a href="/palette-knife-floral" class="sub-item" onclick="toggleMenu()">Floral</a>
     <a href="/brush-work" onclick="toggleMenu()">Brush Work</a>
+    <hr class="divider">
     <a href="/about" onclick="toggleMenu()">About</a>
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <section class="contact-content">
     <h1>Contact</h1>
-    
-    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+        <input type="hidden" name="redirect" value="https://sra-art.com/contact?success=true">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
@@ -210,11 +108,8 @@
         </div>
         <button type="submit" class="submit-btn">Send Message</button>
     </form>
-    
     <p class="contact-location">Dallas–Fort Worth Area</p>
 </section>
-<script>
-    function toggleMenu() { const menu = document.getElementById('mobileMenu'); menu.classList.toggle('active'); document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; }
-</script>
+<script>function toggleMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('active');document.body.style.overflow=m.classList.contains('active')?'hidden':'auto';}</script>
 </body>
 </html>

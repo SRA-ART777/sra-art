@@ -35,15 +35,18 @@
         .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; transition: 0.2s; text-align: left; background: none; border: none; cursor: pointer; width: 100%; }
         .dropdown-menu a:hover, .dropdown-menu .sub-dropdown-toggle:hover { opacity: 1; background: rgba(255,255,255,0.05); }
         .sub-dropdown { position: relative; }
-        .sub-dropdown-menu { display: none; background: rgba(20, 20, 20, 0.98); padding: 5px 0 5px 15px; }
+        .sub-dropdown-toggle { cursor: default; }
+        .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; margin: 0; }
         .sub-dropdown:hover .sub-dropdown-menu { display: block; }
         .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
         .hamburger span { width: 24px; height: 2px; background: var(--text-main); transition: 0.3s; }
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 120px 50px; flex-direction: column; gap: 30px; z-index: 999; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 100px 40px; flex-direction: column; gap: 0; z-index: 999; }
         .mobile-menu.active { display: flex; }
-        .mobile-menu a { color: var(--text-main); text-decoration: none; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-        .mobile-menu .section-label { font-size: 0.8rem; color: var(--accent-orange); opacity: 0.7; margin-top: 20px; margin-bottom: -15px; letter-spacing: 2px; }
+        .mobile-menu a { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .section-header { color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
+        .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
         header { height: 100vh; position: relative; overflow: hidden; }
         .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); opacity: 1; filter: brightness(1) contrast(1); object-fit: cover; }
         @media (max-width: 768px) { .nav-links { display: none; } .audio-toggle { display: none; } .hamburger { display: flex; } nav { padding: 20px 25px; } .logo { font-size: 1rem; } }
@@ -80,12 +83,12 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="/available" onclick="toggleMenu()">Available</a>
-    <div class="section-label">Palette Knife</div>
-    <a href="/palette-knife-trees" onclick="toggleMenu()">Trees</a>
-    <a href="/palette-knife-landscape" onclick="toggleMenu()">Landscape</a>
-    <a href="/palette-knife-floral" onclick="toggleMenu()">Floral</a>
-    <div class="section-label">—</div>
+    <span class="section-header">Palette Knife</span>
+    <a href="/palette-knife-trees" class="sub-item" onclick="toggleMenu()">Trees</a>
+    <a href="/palette-knife-landscape" class="sub-item" onclick="toggleMenu()">Landscape</a>
+    <a href="/palette-knife-floral" class="sub-item" onclick="toggleMenu()">Floral</a>
     <a href="/brush-work" onclick="toggleMenu()">Brush Work</a>
+    <hr class="divider">
     <a href="/about" onclick="toggleMenu()">About</a>
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
