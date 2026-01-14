@@ -28,7 +28,7 @@
         .sub-dropdown { position: relative; }
         .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; }
         .dropdown:hover .sub-dropdown-menu { display: block; }
-        .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; }
+        .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; color: var(--accent-orange); opacity: 1; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
         .hamburger span { width: 24px; height: 2px; background: var(--text-main); }
         .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 100px 40px; flex-direction: column; z-index: 999; }
@@ -38,6 +38,7 @@
         .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
         .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
         .contact-content { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 10% 60px; }
+        .contact-logo { width: 200px; height: auto; margin-bottom: 30px; }
         .contact-content h1 { font-size: 2.2rem; font-weight: 400; letter-spacing: 2px; margin-bottom: 40px; }
         .contact-form { width: 100%; max-width: 500px; margin-bottom: 40px; }
         .form-group { margin-bottom: 20px; text-align: left; }
@@ -48,6 +49,9 @@
         .submit-btn { background: var(--accent-orange); color: white; padding: 18px 50px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s; width: 100%; }
         .submit-btn:hover { background: #b85f1f; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(212, 113, 42, 0.3); }
         .contact-location { color: var(--text-dim); font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; }
+        .instagram-link { margin-top: 25px; display: inline-block; transition: 0.3s; }
+        .instagram-link:hover { opacity: 0.8; transform: scale(1.05); }
+        .instagram-icon { width: 32px; height: 32px; }
         @media (max-width: 768px) { .nav-links, .audio-toggle { display: none; } .hamburger { display: flex; } nav { padding: 20px 25px; } .logo { font-size: 1rem; } .contact-content { padding: 100px 8% 40px; } .contact-content h1 { font-size: 1.8rem; } }
     </style>
 </head>
@@ -90,6 +94,7 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <section class="contact-content">
+    <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768418175/Logo_White_200_qtitvf.png" alt="SRA Art" class="contact-logo">
     <h1>Contact</h1>
     <form class="contact-form" action="https://formspree.io/f/xreegnvo" method="POST">
         <div class="form-group">
@@ -107,6 +112,9 @@
         <button type="submit" class="submit-btn">Send Message</button>
     </form>
     <p class="contact-location">Dallas–Fort Worth Area</p>
+    <a href="https://www.instagram.com/scottandersonfineart/" target="_blank" class="instagram-link">
+        <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768418560/Instagram_icon_128_dmx9ll.png" alt="Instagram" class="instagram-icon">
+    </a>
 </section>
 <script>function toggleMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('active');document.body.style.overflow=m.classList.contains('active')?'hidden':'auto';}</script>
 </body>
