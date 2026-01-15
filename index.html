@@ -124,18 +124,23 @@
     <a href="/about" onclick="toggleMenu()">About</a>
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
+
 <header>
-    <!-- Mobile vertical video hardcoded - NO AUDIO TRACK for iOS autoplay -->
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768451949/Art_Reel_Web_Vertical_no_audio_H.264_at1qhg.mp4"></video>
+    <!-- Mobile vertical video delivered as 720x1280 via Cloudinary transform (better iOS autoplay reliability) -->
+    <video id="heroVideo"
+           autoplay muted loop playsinline webkit-playsinline
+           preload="metadata"
+           src="https://res.cloudinary.com/dqih0axv3/video/upload/w_720,h_1280,c_fill,vc_h264,ac_none,f_mp4,q_auto/v1768451949/Art_Reel_Web_Vertical_no_audio_H.264_at1qhg.mp4">
+    </video>
 </header>
 
-<!-- Soundtrack Audio (from video reel) -->
-<audio id="soundtrackAudio" loop>
+<!-- Soundtrack Audio -->
+<audio id="soundtrackAudio" loop preload="none">
     <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768451944/Art_Reel_Web_31s_Vertical_audio_dngujc.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Narration Audio -->
-<audio id="narrationAudio" loop>
+<!-- Narration Audio (do NOT loop) -->
+<audio id="narrationAudio" preload="none">
     <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768435473/ElevenLabs_2026-01-14T23_46_02_Elariel_-_Light_Ethereal_and_Gentle_pvc_sp92_s44_sb47_se79_m2_hbpq4b.mp3" type="audio/mpeg">
 </audio>
 
@@ -148,12 +153,19 @@
 
     // Video: mobile hardcoded, swap to desktop if wide screen
     const heroVideo = document.getElementById('heroVideo');
+
+    // Mobile vertical (transformed to 720x1280)
+    const MOBILE_VIDEO = 'https://res.cloudinary.com/dqih0axv3/video/upload/w_720,h_1280,c_fill,vc_h264,ac_none,f_mp4,q_auto/v1768451949/Art_Reel_Web_Vertical_no_audio_H.264_at1qhg.mp4';
+
+    // Desktop horizontal (silent)
     const DESKTOP_VIDEO = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768451946/Art_Reel_Web_Horizontal_No_Audio_H.264_vby3us.mp4';
     
     if (window.innerWidth > 768) {
         heroVideo.src = DESKTOP_VIDEO;
         heroVideo.load();
         heroVideo.play().catch(function(e) {});
+    } else {
+        heroVideo.src = MOBILE_VIDEO;
     }
 
     // Audio elements
@@ -171,8 +183,8 @@
             this.setAttribute('data-state', 'full');
             soundtrackAudio.currentTime = 0;
             narrationAudio.currentTime = 0;
-            soundtrackAudio.play();
-            narrationAudio.play();
+            soundtrackAudio.play().catch(()=>{});
+            narrationAudio.play().catch(()=>{});
         } else if (currentState === 'full') {
             // Full -> Music only (soundtrack, no narration)
             this.setAttribute('data-state', 'music');
@@ -180,10 +192,12 @@
             narrationAudio.currentTime = 0;
             // Soundtrack keeps playing
         } else if (currentState === 'music') {
-            // Music -> Muted
+            // Music -> Muted (stop everything)
             this.setAttribute('data-state', 'muted');
             soundtrackAudio.pause();
             soundtrackAudio.currentTime = 0;
+            narrationAudio.pause();
+            narrationAudio.currentTime = 0;
         }
     });
 </script>
