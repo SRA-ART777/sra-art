@@ -60,7 +60,7 @@
         
         header { height: 100vh; position: relative; overflow: hidden; background: #000; }
         
-        .hero-video { 
+        #heroVideo { 
             position: absolute; 
             top: 50%; 
             left: 50%; 
@@ -72,18 +72,11 @@
             object-fit: cover; 
         }
         
-        /* Z-index stacking - both videos load, one covers the other */
-        .video-desktop { z-index: 2; }
-        .video-mobile { z-index: 1; }
-        
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .hamburger { display: flex; } 
             nav { padding: 20px 25px; } 
             .logo { font-size: 1rem; }
-            /* On mobile, bring vertical video to front */
-            .video-desktop { z-index: 1; }
-            .video-mobile { z-index: 2; }
         }
     </style>
 </head>
@@ -132,10 +125,7 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
-    <!-- Mobile Video (loads first in DOM for mobile priority) -->
-    <video class="hero-video video-mobile" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
-    <!-- Desktop Video -->
-    <video class="hero-video video-desktop" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4"></video>
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
 </header>
 
 <!-- Narration Audio -->
@@ -150,14 +140,18 @@
         document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
     }
 
-    // Get both videos
-    const videoDesktop = document.querySelector('.video-desktop');
-    const videoMobile = document.querySelector('.video-mobile');
+    // Single video element - mobile video is hardcoded in HTML
+    // Only swap to desktop if screen is wide enough
+    const heroVideo = document.getElementById('heroVideo');
+    const DESKTOP_VIDEO = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4';
     
-    // Sync mute state for both videos
-    function setVideosMuted(muted) {
-        videoDesktop.muted = muted;
-        videoMobile.muted = muted;
+    // Only change to desktop video if NOT on mobile
+    if (window.innerWidth > 768) {
+        heroVideo.src = DESKTOP_VIDEO;
+        heroVideo.load();
+        heroVideo.play().catch(function(e) {
+            console.log('Autoplay prevented:', e);
+        });
     }
 
     // Audio state management
@@ -168,20 +162,17 @@
         const currentState = this.getAttribute('data-state');
         
         if (currentState === 'muted') {
-            // Muted -> Full audio (narration + soundtrack)
             this.setAttribute('data-state', 'full');
-            setVideosMuted(false);
+            heroVideo.muted = false;
             narrationAudio.currentTime = 0;
             narrationAudio.play();
         } else if (currentState === 'full') {
-            // Full -> Music only (soundtrack, no narration)
             this.setAttribute('data-state', 'music');
             narrationAudio.pause();
             narrationAudio.currentTime = 0;
         } else if (currentState === 'music') {
-            // Music -> Muted
             this.setAttribute('data-state', 'muted');
-            setVideosMuted(true);
+            heroVideo.muted = true;
             narrationAudio.pause();
             narrationAudio.currentTime = 0;
         }
