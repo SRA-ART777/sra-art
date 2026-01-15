@@ -32,7 +32,6 @@
         .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
         .audio-toggle:hover { opacity: 0.8; }
         .audio-toggle svg { width: 24px; height: 24px; }
-        /* Audio icon color states */
         .audio-toggle .icon-path { transition: all 0.3s ease; }
         .audio-toggle[data-state="muted"] .icon-path { fill: var(--accent-orange); stroke: var(--accent-orange); }
         .audio-toggle[data-state="full"] .icon-path { fill: var(--text-main); stroke: var(--text-main); }
@@ -58,21 +57,33 @@
         .mobile-menu .section-header { color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
         .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
         .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
-        header { height: 100vh; position: relative; overflow: hidden; }
-        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); object-fit: cover; }
         
-        /* Desktop: show horizontal, hide vertical */
-        .video-desktop { visibility: visible; }
-        .video-mobile { visibility: hidden; position: absolute; pointer-events: none; }
+        header { height: 100vh; position: relative; overflow: hidden; background: #000; }
+        
+        .hero-video { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto; 
+            height: auto; 
+            transform: translate(-50%, -50%); 
+            object-fit: cover; 
+        }
+        
+        /* Z-index stacking - both videos load, one covers the other */
+        .video-desktop { z-index: 2; }
+        .video-mobile { z-index: 1; }
         
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .hamburger { display: flex; } 
             nav { padding: 20px 25px; } 
             .logo { font-size: 1rem; }
-            /* Mobile: show vertical, hide horizontal */
-            .video-desktop { visibility: hidden; pointer-events: none; }
-            .video-mobile { visibility: visible; pointer-events: auto; }
+            /* On mobile, bring vertical video to front */
+            .video-desktop { z-index: 1; }
+            .video-mobile { z-index: 2; }
         }
     </style>
 </head>
@@ -121,10 +132,10 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
+    <!-- Mobile Video (loads first in DOM for mobile priority) -->
+    <video class="hero-video video-mobile" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
     <!-- Desktop Video -->
     <video class="hero-video video-desktop" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4"></video>
-    <!-- Mobile Video -->
-    <video class="hero-video video-mobile" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
 </header>
 
 <!-- Narration Audio -->
@@ -149,17 +160,6 @@
         videoMobile.muted = muted;
     }
 
-    // Handle orientation changes and resizes (debounced)
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            // Ensure both videos keep playing after resize
-            videoDesktop.play().catch(e => {});
-            videoMobile.play().catch(e => {});
-        }, 250);
-    });
-
     // Audio state management
     const audioToggle = document.getElementById('audioToggle');
     const narrationAudio = document.getElementById('narrationAudio');
@@ -178,7 +178,6 @@
             this.setAttribute('data-state', 'music');
             narrationAudio.pause();
             narrationAudio.currentTime = 0;
-            // Video stays unmuted for soundtrack
         } else if (currentState === 'music') {
             // Music -> Muted
             this.setAttribute('data-state', 'muted');
