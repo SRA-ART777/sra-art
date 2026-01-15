@@ -60,20 +60,11 @@
         .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
         header { height: 100vh; position: relative; overflow: hidden; }
         .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); opacity: 1; filter: brightness(1) contrast(1); object-fit: cover; }
-        /* Hide appropriate video based on screen size */
-        .video-desktop { display: block; }
-        .video-mobile { display: none; }
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .hamburger { display: flex; } 
             nav { padding: 20px 25px; } 
             .logo { font-size: 1rem; }
-            .video-desktop { display: none; }
-            .video-mobile { display: block; }
-        }
-        /* Mobile audio toggle - show in nav-right on mobile */
-        @media (max-width: 768px) {
-            .audio-toggle { display: flex; }
         }
     </style>
 </head>
@@ -122,13 +113,8 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
-    <!-- Desktop Horizontal Video -->
-    <video class="hero-video video-desktop" id="heroVideoDesktop" autoplay muted loop playsinline>
-        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4" type="video/mp4">
-    </video>
-    <!-- Mobile Vertical Video -->
-    <video class="hero-video video-mobile" id="heroVideoMobile" autoplay muted loop playsinline>
-        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4" type="video/mp4">
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
+        <!-- Source set dynamically by JavaScript -->
     </video>
 </header>
 
@@ -144,32 +130,58 @@
         document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
     }
 
+    // Video sources
+    const VIDEO_HORIZONTAL = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4';
+    const VIDEO_VERTICAL = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4';
+    
+    const heroVideo = document.getElementById('heroVideo');
+    let currentVideoType = null;
+
+    // Set video source based on screen width
+    function setVideoSource() {
+        const isMobile = window.innerWidth <= 768;
+        const newVideoType = isMobile ? 'vertical' : 'horizontal';
+        
+        // Only change if different from current
+        if (newVideoType !== currentVideoType) {
+            const newSrc = isMobile ? VIDEO_VERTICAL : VIDEO_HORIZONTAL;
+            const wasMuted = heroVideo.muted;
+            
+            heroVideo.src = newSrc;
+            heroVideo.load();
+            heroVideo.muted = wasMuted;
+            heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
+            
+            currentVideoType = newVideoType;
+        }
+    }
+
+    // Initialize on page load
+    setVideoSource();
+
+    // Handle orientation changes and resizes (debounced)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(setVideoSource, 250);
+    });
+
+    // Also listen for orientation change specifically for mobile
+    window.addEventListener('orientationchange', function() {
+        setTimeout(setVideoSource, 100);
+    });
+
     // Audio state management
-    // States: muted (orange) -> full (white) -> music (light blue) -> muted (orange)
     const audioToggle = document.getElementById('audioToggle');
     const narrationAudio = document.getElementById('narrationAudio');
-    const videoDesktop = document.getElementById('heroVideoDesktop');
-    const videoMobile = document.getElementById('heroVideoMobile');
-
-    // Get the currently visible video
-    function getActiveVideo() {
-        return window.innerWidth <= 768 ? videoMobile : videoDesktop;
-    }
-
-    // Sync both videos muted state
-    function setVideosMuted(muted) {
-        videoDesktop.muted = muted;
-        videoMobile.muted = muted;
-    }
 
     audioToggle.addEventListener('click', function() {
         const currentState = this.getAttribute('data-state');
-        const video = getActiveVideo();
         
         if (currentState === 'muted') {
             // Muted -> Full audio (narration + soundtrack)
             this.setAttribute('data-state', 'full');
-            setVideosMuted(false);
+            heroVideo.muted = false;
             narrationAudio.currentTime = 0;
             narrationAudio.play();
         } else if (currentState === 'full') {
@@ -181,17 +193,9 @@
         } else if (currentState === 'music') {
             // Music -> Muted
             this.setAttribute('data-state', 'muted');
-            setVideosMuted(true);
+            heroVideo.muted = true;
             narrationAudio.pause();
             narrationAudio.currentTime = 0;
-        }
-    });
-
-    // Handle window resize - sync audio state to newly visible video
-    window.addEventListener('resize', function() {
-        const state = audioToggle.getAttribute('data-state');
-        if (state !== 'muted') {
-            setVideosMuted(false);
         }
     });
 </script>
