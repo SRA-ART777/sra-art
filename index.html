@@ -113,8 +113,8 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
-    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
-        <!-- Source set dynamically by JavaScript -->
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+        <source id="videoSource" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4" type="video/mp4">
     </video>
 </header>
 
@@ -135,7 +135,8 @@
     const VIDEO_VERTICAL = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4';
     
     const heroVideo = document.getElementById('heroVideo');
-    let currentVideoType = null;
+    const videoSource = document.getElementById('videoSource');
+    let currentVideoType = 'vertical'; // Default is vertical (set in HTML)
 
     // Set video source based on screen width
     function setVideoSource() {
@@ -147,7 +148,7 @@
             const newSrc = isMobile ? VIDEO_VERTICAL : VIDEO_HORIZONTAL;
             const wasMuted = heroVideo.muted;
             
-            heroVideo.src = newSrc;
+            videoSource.src = newSrc;
             heroVideo.load();
             heroVideo.muted = wasMuted;
             heroVideo.play().catch(e => console.log('Autoplay prevented:', e));
@@ -156,8 +157,10 @@
         }
     }
 
-    // Initialize on page load
-    setVideoSource();
+    // Check on load - only swap if desktop
+    if (window.innerWidth > 768) {
+        setVideoSource();
+    }
 
     // Handle orientation changes and resizes (debounced)
     let resizeTimeout;
