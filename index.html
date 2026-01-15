@@ -125,8 +125,14 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
+    <!-- Mobile vertical video hardcoded - NO AUDIO TRACK for iOS autoplay -->
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768451949/Art_Reel_Web_Vertical_no_audio_H.264_at1qhg.mp4"></video>
 </header>
+
+<!-- Soundtrack Audio (from video reel) -->
+<audio id="soundtrackAudio" loop>
+    <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768451944/Art_Reel_Web_31s_Vertical_audio_dngujc.mp3" type="audio/mpeg">
+</audio>
 
 <!-- Narration Audio -->
 <audio id="narrationAudio" loop>
@@ -140,41 +146,44 @@
         document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
     }
 
-    // Single video element - mobile video is hardcoded in HTML
-    // Only swap to desktop if screen is wide enough
+    // Video: mobile hardcoded, swap to desktop if wide screen
     const heroVideo = document.getElementById('heroVideo');
-    const DESKTOP_VIDEO = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4';
+    const DESKTOP_VIDEO = 'https://res.cloudinary.com/dqih0axv3/video/upload/v1768451946/Art_Reel_Web_Horizontal_No_Audio_H.264_vby3us.mp4';
     
-    // Only change to desktop video if NOT on mobile
     if (window.innerWidth > 768) {
         heroVideo.src = DESKTOP_VIDEO;
         heroVideo.load();
-        heroVideo.play().catch(function(e) {
-            console.log('Autoplay prevented:', e);
-        });
+        heroVideo.play().catch(function(e) {});
     }
 
-    // Audio state management
+    // Audio elements
     const audioToggle = document.getElementById('audioToggle');
+    const soundtrackAudio = document.getElementById('soundtrackAudio');
     const narrationAudio = document.getElementById('narrationAudio');
 
+    // 3-state audio toggle:
+    // Orange (muted) -> White (full: soundtrack + narration) -> Blue (music: soundtrack only) -> Orange
     audioToggle.addEventListener('click', function() {
         const currentState = this.getAttribute('data-state');
         
         if (currentState === 'muted') {
+            // Muted -> Full (soundtrack + narration)
             this.setAttribute('data-state', 'full');
-            heroVideo.muted = false;
+            soundtrackAudio.currentTime = 0;
             narrationAudio.currentTime = 0;
+            soundtrackAudio.play();
             narrationAudio.play();
         } else if (currentState === 'full') {
+            // Full -> Music only (soundtrack, no narration)
             this.setAttribute('data-state', 'music');
             narrationAudio.pause();
             narrationAudio.currentTime = 0;
+            // Soundtrack keeps playing
         } else if (currentState === 'music') {
+            // Music -> Muted
             this.setAttribute('data-state', 'muted');
-            heroVideo.muted = true;
-            narrationAudio.pause();
-            narrationAudio.currentTime = 0;
+            soundtrackAudio.pause();
+            soundtrackAudio.currentTime = 0;
         }
     });
 </script>
