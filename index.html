@@ -16,7 +16,13 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
-        :root { --bg-dark: #0a0a0a; --text-main: #ffffff; --text-dim: #a0a0a0; --accent-orange: #d4712a; }
+        :root { 
+            --bg-dark: #0a0a0a; 
+            --text-main: #ffffff; 
+            --text-dim: #a0a0a0; 
+            --accent-orange: #d4712a; 
+            --accent-blue: #7eb8da;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(26, 26, 26, 0.95); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -26,6 +32,11 @@
         .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
         .audio-toggle:hover { opacity: 0.8; }
         .audio-toggle svg { width: 24px; height: 24px; }
+        /* Audio icon color states */
+        .audio-toggle .icon-path { transition: all 0.3s ease; }
+        .audio-toggle[data-state="muted"] .icon-path { fill: var(--accent-orange); stroke: var(--accent-orange); }
+        .audio-toggle[data-state="full"] .icon-path { fill: var(--text-main); stroke: var(--text-main); }
+        .audio-toggle[data-state="music"] .icon-path { fill: var(--accent-blue); stroke: var(--accent-blue); }
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s ease; background: none; border: none; cursor: pointer; opacity: 0.85; }
         .nav-links a:hover, .dropdown-toggle:hover { opacity: 1; }
@@ -49,15 +60,33 @@
         .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
         header { height: 100vh; position: relative; overflow: hidden; }
         .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); opacity: 1; filter: brightness(1) contrast(1); object-fit: cover; }
-        @media (max-width: 768px) { .nav-links { display: none; } .audio-toggle { display: none; } .hamburger { display: flex; } nav { padding: 20px 25px; } .logo { font-size: 1rem; } }
+        /* Hide appropriate video based on screen size */
+        .video-desktop { display: block; }
+        .video-mobile { display: none; }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .hamburger { display: flex; } 
+            nav { padding: 20px 25px; } 
+            .logo { font-size: 1rem; }
+            .video-desktop { display: none; }
+            .video-mobile { display: block; }
+        }
+        /* Mobile audio toggle - show in nav-right on mobile */
+        @media (max-width: 768px) {
+            .audio-toggle { display: flex; }
+        }
     </style>
 </head>
 <body>
 <nav>
     <a href="/" class="logo">SRA<span class="accent">ART</span></a>
     <div class="nav-right">
-        <button class="audio-toggle" id="audioToggle" title="Toggle audio experience">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="audio-toggle" id="audioToggle" data-state="muted" title="Toggle audio experience">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="icon-path" d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/>
+                <path class="icon-path" d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="icon-path" d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
         </button>
         <div class="nav-links">
             <div class="dropdown">
@@ -93,12 +122,78 @@
     <a href="/contact" onclick="toggleMenu()">Contact</a>
 </div>
 <header>
-    <video class="hero-video" autoplay muted loop playsinline>
-        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768243609/Art_Reel_Website_Home_H.264_jhl3pe.mp4" type="video/mp4">
+    <!-- Desktop Horizontal Video -->
+    <video class="hero-video video-desktop" id="heroVideoDesktop" autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4" type="video/mp4">
+    </video>
+    <!-- Mobile Vertical Video -->
+    <video class="hero-video video-mobile" id="heroVideoMobile" autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4" type="video/mp4">
     </video>
 </header>
+
+<!-- Narration Audio -->
+<audio id="narrationAudio" loop>
+    <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768435473/ElevenLabs_2026-01-14T23_46_02_Elariel_-_Light_Ethereal_and_Gentle_pvc_sp92_s44_sb47_se79_m2_hbpq4b.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-    function toggleMenu() { const menu = document.getElementById('mobileMenu'); menu.classList.toggle('active'); document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; }
+    function toggleMenu() { 
+        const menu = document.getElementById('mobileMenu'); 
+        menu.classList.toggle('active'); 
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
+    }
+
+    // Audio state management
+    // States: muted (orange) -> full (white) -> music (light blue) -> muted (orange)
+    const audioToggle = document.getElementById('audioToggle');
+    const narrationAudio = document.getElementById('narrationAudio');
+    const videoDesktop = document.getElementById('heroVideoDesktop');
+    const videoMobile = document.getElementById('heroVideoMobile');
+
+    // Get the currently visible video
+    function getActiveVideo() {
+        return window.innerWidth <= 768 ? videoMobile : videoDesktop;
+    }
+
+    // Sync both videos muted state
+    function setVideosMuted(muted) {
+        videoDesktop.muted = muted;
+        videoMobile.muted = muted;
+    }
+
+    audioToggle.addEventListener('click', function() {
+        const currentState = this.getAttribute('data-state');
+        const video = getActiveVideo();
+        
+        if (currentState === 'muted') {
+            // Muted -> Full audio (narration + soundtrack)
+            this.setAttribute('data-state', 'full');
+            setVideosMuted(false);
+            narrationAudio.currentTime = 0;
+            narrationAudio.play();
+        } else if (currentState === 'full') {
+            // Full -> Music only (soundtrack, no narration)
+            this.setAttribute('data-state', 'music');
+            narrationAudio.pause();
+            narrationAudio.currentTime = 0;
+            // Video stays unmuted for soundtrack
+        } else if (currentState === 'music') {
+            // Music -> Muted
+            this.setAttribute('data-state', 'muted');
+            setVideosMuted(true);
+            narrationAudio.pause();
+            narrationAudio.currentTime = 0;
+        }
+    });
+
+    // Handle window resize - sync audio state to newly visible video
+    window.addEventListener('resize', function() {
+        const state = audioToggle.getAttribute('data-state');
+        if (state !== 'muted') {
+            setVideosMuted(false);
+        }
+    });
 </script>
 </body>
 </html>
