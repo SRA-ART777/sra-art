@@ -3,180 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SRA FINE ART | Expressionist Oil Paintings</title>
-    
-    <!-- Google Fonts: Inter -->
+    <title>SRA Art | Expressionist Oil Paintings</title>
+    <meta name="description" content="Original expressionist oil paintings by Scott Anderson. Bold palette knife texture and lasting brilliance. Direct from the Texas studio.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SRA Art | Expressionist Oil Paintings">
+    <meta property="og:description" content="Original expressionist oil paintings. Bold palette knife texture and lasting brilliance.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1768246140/Grace_nnn6kr.jpg">
+    <meta property="og:url" content="https://sra-art.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --accent-orange: #e67e22; /* Matching your Motion Studio Orange */
-            --text-main: #ffffff;
+        :root { 
+            --bg-dark: #0a0a0a; 
+            --text-main: #ffffff; 
+            --text-dim: #a0a0a0; 
+            --accent-orange: #d4712a; 
+            --accent-blue: #7eb8da;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-dark );
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Navigation --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            background: rgba(10, 10, 10, 0.7);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--accent-orange); }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        /* Audio Icon */
-        #audio-toggle {
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            fill: var(--accent-orange);
-            transition: 0.3s ease;
-        }
-
-        .nav-links { display: flex; gap: 30px; }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { opacity: 1; }
-
-        /* --- Hero Section --- */
-        header {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            background: #000;
-        }
-
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            opacity: 1;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            nav { padding: 20px; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(26, 26, 26, 0.95); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-main); text-decoration: none; }
+        .logo .accent { color: var(--accent-orange); }
+        .nav-right { display: flex; align-items: center; gap: 35px; }
+        .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s ease; }
+        .audio-toggle:hover { opacity: 0.8; }
+        .audio-toggle svg { width: 24px; height: 24px; }
+        /* Audio icon color states */
+        .audio-toggle .icon-path { transition: all 0.3s ease; }
+        .audio-toggle[data-state="muted"] .icon-path { fill: var(--accent-orange); stroke: var(--accent-orange); }
+        .audio-toggle[data-state="full"] .icon-path { fill: var(--text-main); stroke: var(--text-main); }
+        .audio-toggle[data-state="music"] .icon-path { fill: var(--accent-blue); stroke: var(--accent-blue); }
+        .nav-links { display: flex; gap: 35px; align-items: center; }
+        .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s ease; background: none; border: none; cursor: pointer; opacity: 0.85; }
+        .nav-links a:hover, .dropdown-toggle:hover { opacity: 1; }
+        .dropdown { position: relative; padding: 10px 0; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(20, 20, 20, 0.98); min-width: 180px; padding: 10px 0; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; transition: 0.2s; text-align: left; background: none; border: none; cursor: pointer; width: 100%; }
+        .dropdown-menu a:hover, .dropdown-menu .sub-dropdown-toggle:hover { opacity: 1; background: rgba(255,255,255,0.05); }
+        .sub-dropdown { position: relative; }
+        .sub-dropdown-toggle { cursor: default; }
+        .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; margin: 0; }
+        .dropdown:hover .sub-dropdown-menu { display: block; }
+        .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; color: var(--accent-orange); opacity: 1; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-main); transition: 0.3s; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 100px 40px; flex-direction: column; gap: 0; z-index: 999; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .section-header { color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
+        .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
+        header { height: 100vh; position: relative; overflow: hidden; }
+        .hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translate(-50%, -50%); object-fit: cover; }
+        
+        /* Desktop: show horizontal, hide vertical */
+        .video-desktop { visibility: visible; }
+        .video-mobile { visibility: hidden; position: absolute; pointer-events: none; }
+        
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .hamburger { display: flex; } 
+            nav { padding: 20px 25px; } 
             .logo { font-size: 1rem; }
+            /* Mobile: show vertical, hide horizontal */
+            .video-desktop { visibility: hidden; pointer-events: none; }
+            .video-mobile { visibility: visible; pointer-events: auto; }
         }
     </style>
 </head>
 <body>
-
 <nav>
-    <a href="/" class="logo">SRA <span>FINE ART</span></a>
-    
+    <a href="/" class="logo">SRA<span class="accent">ART</span></a>
     <div class="nav-right">
-        <!-- Audio Toggle Icon (SVG) -->
-        <div id="audio-btn" onclick="toggleAudio()">
-            <svg id="audio-icon" viewBox="0 0 24 24" width="28" height="28">
-                <path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16.02C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" fill="#e67e22"/>
+        <button class="audio-toggle" id="audioToggle" data-state="muted" title="Toggle audio experience">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="icon-path" d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/>
+                <path class="icon-path" d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="icon-path" d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-        </div>
-
+        </button>
         <div class="nav-links">
-            <a href="/available">Available</a>
+            <div class="dropdown">
+                <button class="dropdown-toggle">Art ▾</button>
+                <div class="dropdown-menu">
+                    <a href="/available">Available</a>
+                    <div class="sub-dropdown">
+                        <span class="sub-dropdown-toggle">Palette Knife</span>
+                        <div class="sub-dropdown-menu">
+                            <a href="/palette-knife-trees">Trees</a>
+                            <a href="/palette-knife-landscape">Landscape</a>
+                            <a href="/palette-knife-floral">Floral</a>
+                        </div>
+                    </div>
+                    <a href="/brush-work">Brush Work</a>
+                </div>
+            </div>
             <a href="/about">About</a>
             <a href="/contact">Contact</a>
         </div>
     </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
-
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available" onclick="toggleMenu()">Available</a>
+    <span class="section-header">Palette Knife</span>
+    <a href="/palette-knife-trees" class="sub-item" onclick="toggleMenu()">Trees</a>
+    <a href="/palette-knife-landscape" class="sub-item" onclick="toggleMenu()">Landscape</a>
+    <a href="/palette-knife-floral" class="sub-item" onclick="toggleMenu()">Floral</a>
+    <a href="/brush-work" onclick="toggleMenu()">Brush Work</a>
+    <hr class="divider">
+    <a href="/about" onclick="toggleMenu()">About</a>
+    <a href="/contact" onclick="toggleMenu()">Contact</a>
+</div>
 <header>
-    <video id="hero-video" autoplay muted loop playsinline></video>
+    <!-- Desktop Video -->
+    <video class="hero-video video-desktop" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437296/Art_Reel_Web_Homepage_Horizontal_H.264_kytbbv.mp4"></video>
+    <!-- Mobile Video -->
+    <video class="hero-video video-mobile" autoplay muted loop playsinline webkit-playsinline preload="auto" src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768437288/Art_Reel_Web_31s_Vertical_H.264_gustqx.mp4"></video>
 </header>
 
-<!-- Audio Element -->
-<audio id="bg-audio" src="experience.mp3" loop></audio>
+<!-- Narration Audio -->
+<audio id="narrationAudio" loop>
+    <source src="https://res.cloudinary.com/dqih0axv3/video/upload/v1768435473/ElevenLabs_2026-01-14T23_46_02_Elariel_-_Light_Ethereal_and_Gentle_pvc_sp92_s44_sb47_se79_m2_hbpq4b.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-    // 1. VIDEO SWAP LOGIC
-    const videoElement = document.getElementById('hero-video');
-    const desktopVideo = "https://res.cloudinary.com/dqih0axv3/video/upload/v1768243609/Art_Reel_Website_Home_H.264_jhl3pe.mp4";
-    const mobileVideo = "https://res.cloudinary.com/dqih0axv3/video/upload/v1768251234/Art_Reel_Vertical.mp4"; // Update this link!
-
-    function loadCorrectVideo( ) {
-        if (window.innerWidth <= 768) {
-            videoElement.src = mobileVideo;
-        } else {
-            videoElement.src = desktopVideo;
-        }
-        videoElement.load();
+    function toggleMenu() { 
+        const menu = document.getElementById('mobileMenu'); 
+        menu.classList.toggle('active'); 
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
     }
 
-    // Run on load
-    loadCorrectVideo();
-
-    // 2. AUDIO MACHINE LOGIC
-    const audio = document.getElementById('bg-audio');
-    const icon = document.getElementById('audio-icon').querySelector('path');
-    let audioState = 0; // 0: Off, 1: On
-
-    function toggleAudio() {
-        if (audioState === 0) {
-            audio.play();
-            icon.setAttribute('fill', '#9b59b6'); // Purple for "On"
-            audioState = 1;
-        } else {
-            audio.pause();
-            icon.setAttribute('fill', '#e67e22'); // Back to Orange for "Off"
-            audioState = 0;
-        }
+    // Get both videos
+    const videoDesktop = document.querySelector('.video-desktop');
+    const videoMobile = document.querySelector('.video-mobile');
+    
+    // Sync mute state for both videos
+    function setVideosMuted(muted) {
+        videoDesktop.muted = muted;
+        videoMobile.muted = muted;
     }
+
+    // Handle orientation changes and resizes (debounced)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Ensure both videos keep playing after resize
+            videoDesktop.play().catch(e => {});
+            videoMobile.play().catch(e => {});
+        }, 250);
+    });
+
+    // Audio state management
+    const audioToggle = document.getElementById('audioToggle');
+    const narrationAudio = document.getElementById('narrationAudio');
+
+    audioToggle.addEventListener('click', function() {
+        const currentState = this.getAttribute('data-state');
+        
+        if (currentState === 'muted') {
+            // Muted -> Full audio (narration + soundtrack)
+            this.setAttribute('data-state', 'full');
+            setVideosMuted(false);
+            narrationAudio.currentTime = 0;
+            narrationAudio.play();
+        } else if (currentState === 'full') {
+            // Full -> Music only (soundtrack, no narration)
+            this.setAttribute('data-state', 'music');
+            narrationAudio.pause();
+            narrationAudio.currentTime = 0;
+            // Video stays unmuted for soundtrack
+        } else if (currentState === 'music') {
+            // Music -> Muted
+            this.setAttribute('data-state', 'muted');
+            setVideosMuted(true);
+            narrationAudio.pause();
+            narrationAudio.currentTime = 0;
+        }
+    });
 </script>
-
 </body>
 </html>
