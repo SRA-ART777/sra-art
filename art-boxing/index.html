@@ -1,1 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Art Boxing & Shipping | SRA Art</title>
+    <meta name="description" content="Professional custom crating and shipping services for fine art protection and transportation. Expert handling with 15+ years experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fine Art Boxing & Shipping | SRA Art">
+    <meta property="og:description" content="Professional custom crating and shipping services for fine art.">
+    <meta property="og:image" content="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/art_crate_b59mv5.jpg">
+    <meta property="og:url" content="https://sra-art.com/art-boxing">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
+    <style>
+        :root { 
+            --bg-dark: #0a0a0a; 
+            --text-main: #ffffff; 
+            --text-dim: #a0a0a0; 
+            --accent-orange: #d4712a; 
+            --accent-blue: #7eb8da;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: rgba(26, 26, 26, 0.95); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-main); text-decoration: none; }
+        .logo .accent { color: var(--accent-orange); }
+        .nav-right { display: flex; align-items: center; gap: 35px; }
+
+        .nav-links { display: flex; gap: 35px; align-items: center; }
+        .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s ease; background: none; border: none; cursor: pointer; opacity: 0.85; }
+        .nav-links a:hover, .dropdown-toggle:hover { opacity: 1; }
+
+        .dropdown { position: relative; padding: 10px 0; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: rgba(20, 20, 20, 0.98); min-width: 180px; padding: 10px 0; border-radius: 4px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a, .dropdown-menu .sub-dropdown-toggle { display: block; padding: 12px 20px; color: var(--text-main); opacity: 0.7; text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; transition: 0.2s; text-align: left; background: none; border: none; cursor: pointer; width: 100%; }
+        .dropdown-menu a:hover, .dropdown-menu .sub-dropdown-toggle:hover { opacity: 1; background: rgba(255,255,255,0.05); }
+
+        .sub-dropdown { position: relative; }
+        .sub-dropdown-toggle { cursor: default; }
+        .sub-dropdown-menu { display: none; background: transparent; padding: 0 0 0 15px; margin: 0; }
+        .dropdown:hover .sub-dropdown-menu { display: block; }
+        .sub-dropdown-menu a { padding: 10px 20px; font-size: 0.7rem; color: var(--accent-orange); opacity: 1; }
+
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text-main); transition: 0.3s; }
+
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-dark); padding: 100px 40px; flex-direction: column; gap: 0; z-index: 999; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--text-main); text-decoration: none; font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .section-header { color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 12px 0; }
+        .mobile-menu .sub-item { color: var(--accent-orange); font-size: 0.95rem; font-weight: 500; padding: 10px 0 10px 25px; }
+        .mobile-menu .divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 20px 0; }
+
+        /* Page Header */
+        .page-header { padding: 140px 50px 80px; text-align: center; max-width: 1200px; margin: 0 auto; }
+        .page-header h1 { font-size: 2.8rem; margin-bottom: 20px; letter-spacing: 3px; font-weight: 700; text-transform: uppercase; }
+        .page-header p { color: var(--text-dim); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; font-weight: 400; }
+
+        /* Content Section */
+        .content-section { padding: 60px 50px 100px; background: var(--bg-dark); }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 0.9rem; letter-spacing: 4px; color: var(--accent-orange); margin-bottom: 10px; font-weight: 600; text-transform: uppercase; }
+
+        /* Photo Grid */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+        .photo-item { background: rgba(20, 20, 20, 0.6); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); transition: 0.3s ease; cursor: pointer; position: relative; }
+        .photo-item:hover { border-color: var(--accent-orange); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(212, 113, 42, 0.15); }
+        .photo-item img { width: 100%; height: auto; display: block; }
+
+        /* Lightbox Modal */
+        .lightbox-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 1001; cursor: pointer; animation: fadeIn 0.3s; }
+        .lightbox-modal.active { display: flex; justify-content: center; align-items: center; }
+        .lightbox-modal img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 8px; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Footer Links */
+        .footer-links { text-align: center; padding: 60px 50px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .footer-links p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 15px; }
+        .footer-links a { color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--text-main); }
+
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .hamburger { display: flex; } 
+            nav { padding: 20px 25px; } 
+            .logo { font-size: 1rem; }
+            .page-header { padding: 120px 25px 60px; }
+            .page-header h1 { font-size: 2rem; }
+            .page-header p { font-size: 1rem; }
+            .content-section { padding: 40px 25px 80px; }
+            .photo-grid { grid-template-columns: 1fr; gap: 20px; }
+            .footer-links { padding: 40px 25px; }
+        }
+    </style>
+</head>
+
+<body>
+<nav>
+    <a href="/" class="logo">SRA<span class="accent">ART</span></a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-toggle">Art ▾</button>
+                <div class="dropdown-menu">
+                    <a href="/available">Available</a>
+                    <div class="sub-dropdown">
+                        <span class="sub-dropdown-toggle">Palette Knife</span>
+                        <div class="sub-dropdown-menu">
+                            <a href="/palette-knife-trees">Trees</a>
+                            <a href="/palette-knife-landscape">Landscape</a>
+                            <a href="/palette-knife-floral">Floral</a>
+                        </div>
+                    </div>
+                    <a href="/brush-work">Brush Work</a>
+                </div>
+            </div>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/available" onclick="toggleMenu()">Available</a>
+    <span class="section-header">Palette Knife</span>
+    <a href="/palette-knife-trees" class="sub-item" onclick="toggleMenu()">Trees</a>
+    <a href="/palette-knife-landscape" class="sub-item" onclick="toggleMenu()">Landscape</a>
+    <a href="/palette-knife-floral" class="sub-item" onclick="toggleMenu()">Floral</a>
+    <a href="/brush-work" onclick="toggleMenu()">Brush Work</a>
+    <hr class="divider">
+    <a href="/about" onclick="toggleMenu()">About</a>
+    <a href="/contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section class="page-header">
+    <h1>Fine Art Boxing & Shipping</h1>
+    <p>Professional custom crating and shipping services developed over 15 years of fine art practice. Expert handling ensures your artwork arrives safely, whether across town or across the country.</p>
+</section>
+
+<!-- Fine Art Boxing Gallery -->
+<section class="content-section">
+    <div class="section-header">
+        <h2>CUSTOM CRATING & HANDLING</h2>
+    </div>
+    <div class="photo-grid">
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/art_crate_b59mv5.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/art_crate_b59mv5.jpg" alt="Custom Art Crate">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240602_163102_yujc6j.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240602_163102_yujc6j.jpg" alt="Art Packaging">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/20220907_150322_a_lzfbgh.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/20220907_150322_a_lzfbgh.jpg" alt="Crate Construction">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902391/20250627_154607_kam7zr.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902391/20250627_154607_kam7zr.jpg" alt="Art Crate Detail">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902389/20240601_150001_nlyb00.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902389/20240601_150001_nlyb00.jpg" alt="Packaging Process">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902389/20240607_110741_shsibd.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902389/20240607_110741_shsibd.jpg" alt="Crate Assembly">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/Bottom_of_box_gcsag0.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/Bottom_of_box_gcsag0.jpg" alt="Box Interior">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/art_crate_1_ckxcgf.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/art_crate_1_ckxcgf.jpg" alt="Art Crate">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240601_145924_qtpwjl.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240601_145924_qtpwjl.jpg" alt="Crating Work">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20230901_182823_anh8il.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20230901_182823_anh8il.jpg" alt="Custom Box">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240419_150629_qbibkb.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902388/20240419_150629_qbibkb.jpg" alt="Shipping Preparation">
+        </div>
+
+        <div class="photo-item" onclick="openLightbox('https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/wood_shop_n0sfm1.jpg')">
+            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1771902396/wood_shop_n0sfm1.jpg" alt="Wood Shop">
+        </div>
+    </div>
+</section>
+
+<div class="footer-links">
+    <p>Also see commercial video work at</p>
+    <a href="https://sramotionstudio.com" target="_blank">sramotionstudio.com</a>
+</div>
+
+<!-- Lightbox Modal -->
+<div class="lightbox-modal" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    function toggleMenu() { 
+        const menu = document.getElementById('mobileMenu'); 
+        menu.classList.toggle('active'); 
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; 
+    }
+
+    function openLightbox(imgSrc) {
+        document.getElementById('lightbox').classList.add('active');
+        document.getElementById('lightbox-img').src = imgSrc;
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+</script>
+</body>
+</html>
