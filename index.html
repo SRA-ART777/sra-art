@@ -32,6 +32,8 @@
         .logo .accent { color: var(--accent-orange); }
         .nav-right { display: flex; align-items: center; gap: 35px; }
 
+        .audio-controls { display: flex; align-items: center; gap: 12px; }
+
         .audio-toggle { background: none; border: none; cursor: pointer; padding: 5px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.3s ease; }
         .audio-toggle:hover { opacity: 0.8; }
         .audio-toggle svg { width: 24px; height: 24px; }
@@ -43,6 +45,37 @@
         .audio-label { font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-orange); white-space: nowrap; transition: color 0.3s ease; }
         .audio-toggle[data-state="full"] .audio-label { color: var(--text-main); }
         .audio-toggle[data-state="music"] .audio-label { color: var(--accent-blue); }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 0;
+            opacity: 0;
+            height: 3px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+            transition: width 0.35s ease, opacity 0.35s ease;
+            pointer-events: none;
+        }
+        .volume-slider.visible { width: 80px; opacity: 1; pointer-events: auto; }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            cursor: pointer;
+            border: none;
+        }
+        .volume-slider::-moz-range-thumb {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            cursor: pointer;
+            border: none;
+        }
 
         .nav-links { display: flex; gap: 35px; align-items: center; }
         .nav-links a, .dropdown-toggle { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s ease; background: none; border: none; cursor: pointer; opacity: 0.85; }
@@ -87,6 +120,7 @@
             nav { padding: 20px 25px; } 
             .logo { font-size: 1rem; }
             .audio-label { font-size: 0.7rem; letter-spacing: 1px; }
+            .volume-slider, .volume-slider.visible { width: 0; opacity: 0; pointer-events: none; }
         }
         @media (max-width: 480px) {
             .audio-toggle { gap: 7px; }
@@ -116,14 +150,17 @@
 <nav>
     <a href="/" class="logo">SRA<span class="accent">ART</span></a>
     <div class="nav-right">
-        <button class="audio-toggle" id="audioToggle" data-state="muted" title="Toggle audio experience">
-            <span class="audio-label" id="audioLabel">Hear the story</span>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="icon-path" d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/>
-                <path class="icon-path" d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path class="icon-path" d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
+        <div class="audio-controls">
+            <button class="audio-toggle" id="audioToggle" data-state="muted" title="Toggle audio experience">
+                <span class="audio-label" id="audioLabel">Hear the story</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="icon-path" d="M11 5L6 9H2V15H6L11 19V5Z" fill="#d4712a"/>
+                    <path class="icon-path" d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 11.995C17.0039 13.3208 16.4774 14.5924 15.54 15.53" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path class="icon-path" d="M18.07 5.93C19.9447 7.80528 20.9979 10.3478 20.9979 13C20.9979 15.6522 19.9447 18.1947 18.07 20.07" stroke="#d4712a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="85" title="Volume">
+        </div>
 
         <div class="nav-links">
             <div class="dropdown">
@@ -215,6 +252,24 @@
     const soundtrackAudio = document.getElementById('soundtrackAudio');
     const narrationAudio = document.getElementById('narrationAudio');
     const audioLabel = document.getElementById('audioLabel');
+    const volumeSlider = document.getElementById('volumeSlider');
+
+    // Volume: starts on the louder side (85%)
+    let currentVolume = 0.85;
+    soundtrackAudio.volume = currentVolume;
+    narrationAudio.volume = currentVolume;
+
+    volumeSlider.addEventListener('input', function() {
+        currentVolume = this.value / 100;
+        soundtrackAudio.volume = currentVolume;
+        narrationAudio.volume = currentVolume;
+    });
+
+    function showSlider(show) {
+        // No slider on phone-like devices (iOS ignores JS volume; hardware buttons rule there)
+        if (isPhoneLike) return;
+        volumeSlider.classList.toggle('visible', show);
+    }
 
     function stopAllAudio() {
         soundtrackAudio.pause();
@@ -230,6 +285,7 @@
         if (currentState === 'muted') {
             this.setAttribute('data-state', 'full');
             audioLabel.textContent = 'Narration on';
+            showSlider(true);
 
             soundtrackAudio.currentTime = 0;
             soundtrackAudio.play().catch(()=>{});
@@ -248,6 +304,7 @@
         } else if (currentState === 'music') {
             this.setAttribute('data-state', 'muted');
             audioLabel.textContent = 'Hear the story';
+            showSlider(false);
             stopAllAudio();
         }
     });
