@@ -86,29 +86,12 @@
             line-height: 1.6;
         }
         
-        /* Force 3-wide on desktop */
-        .available-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 40px; 
-            margin-bottom: 60px; 
-        }
-        .painting-card { text-align: center; }
-        .painting-card img { width: 100%; height: 280px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: 0.3s; }
-        .painting-card img:hover { transform: scale(1.02); }
-        .painting-info { margin-top: 20px; }
-        .painting-title { font-size: 1.3rem; font-weight: 400; margin-bottom: 8px; color: var(--text-main); }
-        .painting-details { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 10px; }
-        .painting-price { color: var(--accent-orange); font-size: 1.2rem; font-weight: 600; font-family: 'Inter', sans-serif; }
+        .coming-soon { text-align: center; padding: 60px 20px 100px; }
+        .coming-soon p { font-size: 1.4rem; color: var(--text-main); margin-bottom: 15px; }
+        .coming-soon .coming-soon-sub { font-size: 1rem; color: var(--text-dim); max-width: 480px; margin: 0 auto 30px; line-height: 1.7; }
+        .notify-link { font-family: 'Inter', sans-serif; display: inline-block; color: var(--accent-orange); border: 1px solid var(--accent-orange); padding: 12px 30px; text-decoration: none; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; transition: 0.3s; }
+        .notify-link:hover { background: var(--accent-orange); color: var(--bg-dark); }
         
-        .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 2000; justify-content: center; align-items: center; flex-direction: column; }
-        .lightbox.active { display: flex; }
-        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; }
-        .lightbox-img { max-width: 90%; max-height: 85%; object-fit: contain; }
-        
-        @media (max-width: 1024px) { 
-            .available-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        }
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .audio-toggle { display: none; } 
@@ -117,7 +100,6 @@
             .logo { font-size: 1rem; } 
             .page-content { padding: 100px 5% 60px; } 
             .page-header h1 { font-size: 1.8rem; } 
-            .available-grid { grid-template-columns: 1fr; } 
         }
     </style>
     <!-- Google Analytics (GA4) -->
@@ -186,42 +168,15 @@
         <p class="studio-direct">Studio Direct Pricing</p>
         <p class="commissions-note">Now accepting commissions for 2026</p>
     </div>
-    <div class="available-grid">
-        <div class="painting-card">
-            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245156/Vivid_egjl58.jpg" alt="Vivid" onclick="openLightbox(this.src)">
-            <div class="painting-info">
-                <h3 class="painting-title">Vivid</h3>
-                <p class="painting-details">Oil on Canvas · 24" × 36" · Framed</p>
-                <p class="painting-price">$1,700</p>
-            </div>
-        </div>
-        <div class="painting-card">
-            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245158/Westward_Gaze_wfxpat.jpg" alt="Westward Gaze" onclick="openLightbox(this.src)">
-            <div class="painting-info">
-                <h3 class="painting-title">Westward Gaze</h3>
-                <p class="painting-details">Oil on Canvas · 36" × 48" · Side Painted</p>
-                <p class="painting-price">$3,200</p>
-            </div>
-        </div>
-        <div class="painting-card">
-            <img src="https://res.cloudinary.com/dqih0axv3/image/upload/v1768245152/Lumina_ru0ili.jpg" alt="Lumina" onclick="openLightbox(this.src)">
-            <div class="painting-info">
-                <h3 class="painting-title">Lumina</h3>
-                <p class="painting-details">Oil on Panel · 10" × 10" · Framed</p>
-                <p class="painting-price">$350</p>
-            </div>
-        </div>
+    <div class="coming-soon">
+        <p>New work coming soon.</p>
+        <p class="coming-soon-sub">A new series of original oil paintings is in progress in the studio. Join the collector list to see them first.</p>
+        <a href="/contact" class="notify-link">Get notified</a>
     </div>
 </section>
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-</div>
+
 <script>
     function toggleMenu() { const menu = document.getElementById('mobileMenu'); menu.classList.toggle('active'); document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : 'auto'; }
-    function openLightbox(imgSrc) { document.getElementById('lightbox-img').src = imgSrc; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox(event) { if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; } }
-    document.addEventListener('keydown', function(event) { if (event.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = 'auto'; } });
 </script>
 </body>
 </html>
